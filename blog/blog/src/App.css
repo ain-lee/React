@@ -1,0 +1,6 @@
+div {box-sizing:border-box;}
+.App {text-align:center;}
+.black-nav {display:flex; padding-left:20px; background:#000; width:100%; color:#fff; }
+.list {padding-left:20px; text-align:left; border-bottom:1px solid gray;}
+.like-btn {cursor: pointer;}
+.modal {margin-top:20px; padding:20px; background:#eee; text-align:left;}

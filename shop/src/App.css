@@ -1,0 +1,7 @@
+* {margin:0; padding:0;}
+a {text-decoration:none;}
+.App{text-align: center; letter-spacing:-0.8px;}
+
+.main-bg{height:300px; background-image:url(/main-bg.png); background-size:cover; background-position:center;}
+.me-auto a {padding:0 0.5rem; color:#fff; transition:0.2s}
+.me-auto a:hover {color:rgba(255, 255, 255, 0.75);}

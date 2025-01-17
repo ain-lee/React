@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import {Nav} from 'react-bootstrap'
+
 /**styled-components를 쓰는이유
     1. CSS 파일 오픈할 필요없이 JS 파일에서 바로 스타일넣을 수 있습니다.
     2. styled-components는 다른 JS 파일을 오염시키지 않습니다. 원래 App.css파일은 오염됩니다.
@@ -32,6 +34,7 @@ function Detail(props) {
     let { id } = useParams();
     let 찾은상품 = props.shoes.find((x) => x.id == id)
     let [alert, setAlert] = useState(true)
+    let [tab, setTab] = useState(0)
 
     useEffect(() => {
         let time = setTimeout(() => { setAlert(false) }, 2000)
@@ -82,7 +85,7 @@ function Detail(props) {
                 alert == true
                     ? <div className="alert alert-warning">
                         2초이내 구매 시 할인
-                      </div>
+                    </div>
                     : null
             }
             <div className="row">
@@ -90,15 +93,35 @@ function Detail(props) {
                     <img src={`https://codingapple1.github.io/shop/shoes${찾은상품.id + 1}.jpg`} width="100%" />
                 </div>
                 <div className="col-md-6">
-                    <input type="text"/>
+                    <input type="text" />
                     <h4 className="pt-5">{찾은상품.title}</h4>
                     <p>{찾은상품.content}</p>
                     <p>{찾은상품.price}</p>
                     <button className="btn btn-danger">주문하기</button>
                 </div>
             </div>
+
+            <Nav variant="tabs" defaultActiveKey="link0">
+                <Nav.Item>
+                    <Nav.Link onClick={()=>{setTab(0)}} eventKey="link0">버튼0</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link onClick={()=>{setTab(1)}} eventKey="link1">버튼1</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link onClick={()=>{setTab(2)}} eventKey="link2">버튼2</Nav.Link>
+                </Nav.Item>
+            </Nav>
+            <TabContent tab={tab} />
         </div>
     )
+}
+
+function TabContent({tab}){
+    // if(tab == 0) return <div>내용0</div>
+    // if(tab == 1) return <div>내용1</div>
+    // if(tab == 2) return <div>내용2</div>
+    return [<div>내용0</div>, <div>내용1</div>, <div>내용2</div>][tab]
 }
 
 export default Detail;

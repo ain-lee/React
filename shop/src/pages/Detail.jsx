@@ -35,6 +35,7 @@ function Detail(props) {
     let 찾은상품 = props.shoes.find((x) => x.id == id)
     let [alert, setAlert] = useState(true)
     let [tab, setTab] = useState(0)
+    let [load, setLoad] = useState('')
 
     useEffect(() => {
         let time = setTimeout(() => { setAlert(false) }, 2000)
@@ -78,7 +79,7 @@ function Detail(props) {
 
 
     return (
-        <div className="container">
+        <div className={'container'}>
             {/* <Btn bg='black'>버튼</Btn>
            <NewBtn bg='pink'>버튼</NewBtn> */}
             {
@@ -88,6 +89,14 @@ function Detail(props) {
                     </div>
                     : null
             }
+            {/* {
+                useEffect(()=>{
+                    flushSync(()=>{setLoad('end')},100)
+                    return ()=>{
+                        setLoad('')
+                    }
+                }, [])
+            } */}
             <div className="row">
                 <div className="col-md-6">
                     <img src={`https://codingapple1.github.io/shop/shoes${찾은상품.id + 1}.jpg`} width="100%" />
@@ -118,10 +127,19 @@ function Detail(props) {
 }
 
 function TabContent({tab}){
+    let [fade, setfade] = useState('')
     // if(tab == 0) return <div>내용0</div>
     // if(tab == 1) return <div>내용1</div>
     // if(tab == 2) return <div>내용2</div>
-    return [<div>내용0</div>, <div>내용1</div>, <div>내용2</div>][tab]
+    useEffect(()=>{
+        setTimeout(()=>{setfade('end')},100)
+        return ()=>{
+            setfade('')
+        }
+    }, [tab])
+    return (<div className={`start ${fade}`}>
+                {[<div>내용0</div>, <div>내용1</div>, <div>내용2</div>][tab]}
+            </div>)
 }
 
 export default Detail;
